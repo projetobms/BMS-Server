@@ -143,7 +143,7 @@ int main(int argc, char** argv)
     batteryChargerEnableAttr.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
 
     batteryChargerEnableAttr.displayName = UA_LOCALIZEDTEXT("en-US", "batteryChargerEnable");
-    UA_Double batteryChargerEnable = 0; // Valor de exemplo para a tensão da bateria
+    UA_Double batteryEnableChargerEnable = 0; // Valor de exemplo para a tensão da bateria
     UA_Variant_setScalar(&batteryChargerEnableAttr.value, &batteryChargerEnable, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
