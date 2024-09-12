@@ -1,6 +1,4 @@
-# docker-compose.yml
-
-version: '3'
+version: '3.3'
 
 services:
   nginx:
@@ -11,14 +9,38 @@ services:
     volumes:
       - ./NGINX/certs:/etc/letsencrypt/live/labnvh.online
       - ./NGINX/nginx.conf:/etc/nginx/nginx.conf
+  
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
   tcp_server:
     build: ./TCP-SERVER
     ports:
       - "8081:8081"
+  
   opc_server:
     build: ./OPC-SERVER
     ports:
       - "4840:4840"
+  
+  api:
+    build: ./API
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - opc_server
+    environment:
+      DATABASE_URL: postgresql://myuser:mypassword@db:5432/mydatabase
 
-
-
+volumes:
+  postgres_data:
