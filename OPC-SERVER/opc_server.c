@@ -16,6 +16,8 @@ int main(int argc, char** argv)
     UA_Server *server = UA_Server_new();
     UA_ServerConfig *config = UA_Server_getConfig(server);
 
+
+
     /* Configurar o servidor para escutar em todos os endereços IP e sem segurança */
     UA_ServerConfig_setMinimal(config, 4840, NULL);
 
@@ -24,7 +26,7 @@ int main(int argc, char** argv)
 
     UA_NodeId parentNodeId = UA_NODEID_NUMERIC(0,UA_NS0ID_OBJECTSFOLDER);
     UA_NodeId parentReferenceNodeId = UA_NODEID_NUMERIC(0,UA_NS0ID_ORGANIZES);
-    UA_NodeId variableType = UA_NODEID_NULL;
+    UA_NodeId variableType = UA_NODEID_NUMERIC(0, UA_NS0ID_BASEDATAVARIABLETYPE);
 
 
     /* Adicionar o nó de variável batteryVoltage */
@@ -56,8 +58,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&batteryTemperatureAttr.value, &batteryTemperature, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId batteryTemperatureNodeId = UA_NODEID_STRING(2, "battery.temperature");
-    UA_QualifiedName batteryTemperatureBrowseName = UA_QUALIFIEDNAME(2, "batteryTemperature");
+    UA_NodeId batteryTemperatureNodeId = UA_NODEID_STRING(1, "battery.temperature");
+    UA_QualifiedName batteryTemperatureBrowseName = UA_QUALIFIEDNAME(1, "batteryTemperature");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, batteryTemperatureNodeId, parentNodeId, parentReferenceNodeId,
@@ -75,8 +77,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&batteryCurrentAttr.value, &batteryCurrent, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId batteryCurrentNodeId = UA_NODEID_STRING(3, "battery.current");
-    UA_QualifiedName batteryCurrentBrowseName = UA_QUALIFIEDNAME(3, "batteryCurrent");
+    UA_NodeId batteryCurrentNodeId = UA_NODEID_STRING(1, "battery.current");
+    UA_QualifiedName batteryCurrentBrowseName = UA_QUALIFIEDNAME(1, "batteryCurrent");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, batteryCurrentNodeId, parentNodeId, parentReferenceNodeId,
@@ -93,8 +95,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&batterySOCAttr.value, &batterySOC, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId batterySOCNodeId = UA_NODEID_STRING(4, "battery.SOC");
-    UA_QualifiedName batterySOCBrowseName = UA_QUALIFIEDNAME(4, "batterySOC");
+    UA_NodeId batterySOCNodeId = UA_NODEID_STRING(1, "battery.SOC");
+    UA_QualifiedName batterySOCBrowseName = UA_QUALIFIEDNAME(1, "batterySOC");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, batterySOCNodeId, parentNodeId, parentReferenceNodeId,
@@ -111,8 +113,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&batteryDischargeCurrentAttr.value, &batteryDischargeCurrent, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId batteryDischargeCurrentNodeId = UA_NODEID_STRING(5, "battery.dischargecurrent");
-    UA_QualifiedName batteryDischargeCurrentBrowseName = UA_QUALIFIEDNAME(5, "batteryDischargeCurrent");
+    UA_NodeId batteryDischargeCurrentNodeId = UA_NODEID_STRING(1, "battery.dischargecurrent");
+    UA_QualifiedName batteryDischargeCurrentBrowseName = UA_QUALIFIEDNAME(1, "batteryDischargeCurrent");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, batteryDischargeCurrentNodeId, parentNodeId, parentReferenceNodeId,
@@ -129,8 +131,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&batteryChargerVoltageAttr.value, &batteryChargerVoltage, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId batteryChargerVoltageNodeId = UA_NODEID_STRING(6, "battery.chargervoltage");
-    UA_QualifiedName batteryChargerVoltageBrowseName = UA_QUALIFIEDNAME(6, "batteryChargerVoltage");
+    UA_NodeId batteryChargerVoltageNodeId = UA_NODEID_STRING(1, "battery.chargervoltage");
+    UA_QualifiedName batteryChargerVoltageBrowseName = UA_QUALIFIEDNAME(1, "batteryChargerVoltage");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, batteryChargerVoltageNodeId, parentNodeId, parentReferenceNodeId,
@@ -147,8 +149,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&batteryChargerEnableAttr.value, &batteryChargerEnable, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId batteryChargerEnableNodeId = UA_NODEID_STRING(7, "battery.chargerenable");
-    UA_QualifiedName batteryChargerEnableBrowseName = UA_QUALIFIEDNAME(7, "batteryChargerEnable");
+    UA_NodeId batteryChargerEnableNodeId = UA_NODEID_STRING(1, "battery.chargerenable");
+    UA_QualifiedName batteryChargerEnableBrowseName = UA_QUALIFIEDNAME(1, "batteryChargerEnable");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, batteryChargerEnableNodeId, parentNodeId, parentReferenceNodeId,
@@ -165,8 +167,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&batteryDischargerEnableAttr.value, &batteryDischargerEnable, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId batteryDischargerEnableNodeId = UA_NODEID_STRING(8, "battery.dischargerenable");
-    UA_QualifiedName batteryDischargerEnableBrowseName = UA_QUALIFIEDNAME(8, "batteryDischargerEnable");
+    UA_NodeId batteryDischargerEnableNodeId = UA_NODEID_STRING(1, "battery.dischargerenable");
+    UA_QualifiedName batteryDischargerEnableBrowseName = UA_QUALIFIEDNAME(1, "batteryDischargerEnable");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, batteryDischargerEnableNodeId, parentNodeId, parentReferenceNodeId,
@@ -183,15 +185,33 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&chamberSetpointAttr.value, &chamberSetpointEnable, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId chamberSetpointNodeId = UA_NODEID_STRING(9, "chamber.setpoint");
-    UA_QualifiedName chamberSetpointBrowseName = UA_QUALIFIEDNAME(9, "chamberSetpoint");
+    UA_NodeId chamberSetpointNodeId = UA_NODEID_STRING(1, "chamber.setpoint");
+    UA_QualifiedName chamberSetpointBrowseName = UA_QUALIFIEDNAME(1, "chamberSetpoint");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, chamberSetpointNodeId, parentNodeId, parentReferenceNodeId,
                               chamberSetpointBrowseName, variableType, chamberSetpointAttr, NULL, NULL);
 
+
     /*------------------------------------------------------------------------------------------*/
-    UA_VariableAttributes espBatteryVoltageAttr = UA_VariableAttributes_default;
+
+    UA_VariableAttributes chamberTemperatureAttr = UA_VariableAttributes_default;
+    
+    chamberTemperatureAttr.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
+
+    chamberTemperatureAttr.displayName = UA_LOCALIZEDTEXT("en-US", "chamberTemperature");
+    UA_Double chamberTemperatureEnable = 0; // Valor de exemplo para a tensão da bateria
+    UA_Variant_setScalar(&chamberTemperatureAttr.value, &chamberTemperatureEnable, &UA_TYPES[UA_TYPES_DOUBLE]);
+
+    /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
+    UA_NodeId chamberTemperatureNodeId = UA_NODEID_STRING(1, "chamber.temperature");
+    UA_QualifiedName chamberTemperatureBrowseName = UA_QUALIFIEDNAME(1, "chamberTemperature");
+
+    /* 3) Adicionar o nó */
+    UA_Server_addVariableNode(server, chamberTemperatureNodeId, parentNodeId, parentReferenceNodeId,
+                              chamberTemperatureBrowseName, variableType, chamberTemperatureAttr, NULL, NULL);
+
+    /*------------------------------------------------------------------------------------------*/    UA_VariableAttributes espBatteryVoltageAttr = UA_VariableAttributes_default;
     
     espBatteryVoltageAttr.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
 
@@ -200,8 +220,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&espBatteryVoltageAttr.value, &espBatteryVoltage, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId espBatteryVoltageNodeId = UA_NODEID_STRING(11, "esp.battery.voltage");
-    UA_QualifiedName espBatteryVoltageBrowseName = UA_QUALIFIEDNAME(11, "espBatteryVoltage");
+    UA_NodeId espBatteryVoltageNodeId = UA_NODEID_STRING(1, "esp.battery.voltage");
+    UA_QualifiedName espBatteryVoltageBrowseName = UA_QUALIFIEDNAME(1, "espBatteryVoltage");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, espBatteryVoltageNodeId, parentNodeId, parentReferenceNodeId,
@@ -218,8 +238,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&espBatteryTemperatureAttr.value, &espBatteryTemperature, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId espBatteryTemperatureNodeId = UA_NODEID_STRING(12, "esp.battery.temperature");
-    UA_QualifiedName espBatteryTemperatureBrowseName = UA_QUALIFIEDNAME(12, "espBatteryTemperature");
+    UA_NodeId espBatteryTemperatureNodeId = UA_NODEID_STRING(1, "esp.battery.temperature");
+    UA_QualifiedName espBatteryTemperatureBrowseName = UA_QUALIFIEDNAME(1, "espBatteryTemperature");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, espBatteryTemperatureNodeId, parentNodeId, parentReferenceNodeId,
@@ -237,8 +257,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&espBatteryCurrentAttr.value, &espBatteryCurrent, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId espBatteryCurrentNodeId = UA_NODEID_STRING(13, "esp.battery.current");
-    UA_QualifiedName espBatteryCurrentBrowseName = UA_QUALIFIEDNAME(13, "espBatteryCurrent");
+    UA_NodeId espBatteryCurrentNodeId = UA_NODEID_STRING(1, "esp.battery.current");
+    UA_QualifiedName espBatteryCurrentBrowseName = UA_QUALIFIEDNAME(1, "espBatteryCurrent");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, espBatteryCurrentNodeId, parentNodeId, parentReferenceNodeId,
@@ -255,8 +275,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&espBatterySocAttr.value, &espBatterySOC, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId espBatterySocNodeId = UA_NODEID_STRING(14, "esp.battery.SOC");
-    UA_QualifiedName espBatterySocBrowseName = UA_QUALIFIEDNAME(14, "espBatterySOC");
+    UA_NodeId espBatterySocNodeId = UA_NODEID_STRING(1, "esp.battery.SOC");
+    UA_QualifiedName espBatterySocBrowseName = UA_QUALIFIEDNAME(1, "espBatterySOC");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, espBatterySocNodeId, parentNodeId, parentReferenceNodeId,
@@ -273,8 +293,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&espBatteryDischargeCurrentAttr.value, &espBatteryDischargeCurrent, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId espBatteryDischargeCurrentNodeId = UA_NODEID_STRING(15, "esp.battery.dischargecurrent");
-    UA_QualifiedName espBatteryDischargeCurrentBrowseName = UA_QUALIFIEDNAME(15, "espBatteryDischargeCurrent");
+    UA_NodeId espBatteryDischargeCurrentNodeId = UA_NODEID_STRING(1, "esp.battery.dischargecurrent");
+    UA_QualifiedName espBatteryDischargeCurrentBrowseName = UA_QUALIFIEDNAME(1, "espBatteryDischargeCurrent");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, espBatteryDischargeCurrentNodeId, parentNodeId, parentReferenceNodeId,
@@ -291,8 +311,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&espBatteryChargerVoltageAttr.value, &espBatteryChargerVoltage, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId espBatteryChargerVoltageNodeId = UA_NODEID_STRING(16, "esp.battery.chargervoltage");
-    UA_QualifiedName espBatteryChargerVoltageBrowseName = UA_QUALIFIEDNAME(16, "espBatteryChargerVoltage");
+    UA_NodeId espBatteryChargerVoltageNodeId = UA_NODEID_STRING(1, "esp.battery.chargervoltage");
+    UA_QualifiedName espBatteryChargerVoltageBrowseName = UA_QUALIFIEDNAME(1, "espBatteryChargerVoltage");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, espBatteryChargerVoltageNodeId, parentNodeId, parentReferenceNodeId,
@@ -309,8 +329,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&espBatteryChargerEnableAttr.value, &espBatteryChargerEnable, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId espBatteryChargerEnableNodeId = UA_NODEID_STRING(17, "esp.battery.chargerenable");
-    UA_QualifiedName espBatteryChargerEnableBrowseName = UA_QUALIFIEDNAME(17, "espBatteryChargerEnable");
+    UA_NodeId espBatteryChargerEnableNodeId = UA_NODEID_STRING(1, "esp.battery.chargerenable");
+    UA_QualifiedName espBatteryChargerEnableBrowseName = UA_QUALIFIEDNAME(1, "espBatteryChargerEnable");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, espBatteryChargerEnableNodeId, parentNodeId, parentReferenceNodeId,
@@ -327,8 +347,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&espBatteryDischargerEnableAttr.value, &espBatteryDischargerEnable, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId espBatteryDischargerEnableNodeId = UA_NODEID_STRING(18, "esp.battery.dischargerenable");
-    UA_QualifiedName espBatteryDischargerEnableBrowseName = UA_QUALIFIEDNAME(18, "espBatteryDischargerEnable");
+    UA_NodeId espBatteryDischargerEnableNodeId = UA_NODEID_STRING(1, "esp.battery.dischargerenable");
+    UA_QualifiedName espBatteryDischargerEnableBrowseName = UA_QUALIFIEDNAME(1, "espBatteryDischargerEnable");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, espBatteryDischargerEnableNodeId, parentNodeId, parentReferenceNodeId,
@@ -345,8 +365,8 @@ int main(int argc, char** argv)
     UA_Variant_setScalar(&simulationTimeAttr.value, &simulationTime, &UA_TYPES[UA_TYPES_DOUBLE]);
 
     /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
-    UA_NodeId simulationTimeNodeId = UA_NODEID_STRING(19, "simulation.time");
-    UA_QualifiedName simulationTimeBrowseName = UA_QUALIFIEDNAME(19, "simulationTime");
+    UA_NodeId simulationTimeNodeId = UA_NODEID_STRING(1, "simulation.time");
+    UA_QualifiedName simulationTimeBrowseName = UA_QUALIFIEDNAME(1, "simulationTime");
 
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, simulationTimeNodeId, parentNodeId, parentReferenceNodeId,
