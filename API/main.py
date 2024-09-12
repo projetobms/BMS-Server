@@ -22,7 +22,7 @@ def get_db():
         db.close()
 
 # Endereço do servidor OPC-UA
-server_url = "opc.tcp://192.168.0.10:4840"  # Substitua pelo URL do seu servidor OPC-UA
+server_url = "opc.tcp://192.168.0.231:4840"  # Substitua pelo URL do seu servidor OPC-UA
 
 # Identificadores dos nós que você deseja consultar
 node_ids = {

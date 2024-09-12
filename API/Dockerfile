@@ -16,12 +16,11 @@ COPY . .
 # Garantir que o diretório de scripts do Python esteja no PATH
 ENV PATH="/root/.local/bin:$PATH"
 
-# Copiar o arquivo start.sh e garantir permissões de execução
-COPY start.sh /app/start.sh
+# Definir permissões de execução no arquivo start.sh
 RUN chmod +x /app/start.sh
 
 # Expor a porta na qual o FastAPI será executado
 EXPOSE 8000
 
-# Comando para iniciar o script de inicialização
-CMD ["/app/start.sh"]
+# Manter o container rodando para debug
+CMD ["sh", "/app/start.sh"]
