@@ -54,7 +54,7 @@ def read_modbus_register(register_address):
 
 # Função assíncrona para ler e salvar os dados no OPC UA
 async def read_and_save_modbus_to_opcua():
-    opcua_client = Client("opc.tcp://192.168.0.231:4840")  # URL do servidor OPC UA
+    opcua_client = Client("opc.tcp://localhost:4840")  # URL do servidor OPC UA
     opcua_client.connect()  # Conectar ao servidor OPC UA
     
     try:

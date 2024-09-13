@@ -1,0 +1,21 @@
+# Ignore the virtual environment folder
+venv/
+ENV/
+env/
+.venv/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore macOS specific files
+.DS_Store
+
+# Ignore virtual environment configuration
+Pipfile
+Pipfile.lock
+
+# Ignore package manager files
+*.egg-info/

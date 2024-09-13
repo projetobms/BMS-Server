@@ -1,0 +1,5 @@
+opcua
+asyncio
+sqlalchemy
+cryptography
+pyserial
