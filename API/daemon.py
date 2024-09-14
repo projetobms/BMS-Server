@@ -130,7 +130,7 @@ async def read_and_save_data():
             data = await read_opcua_data(client)  # Reutilizar a conexão
             if data:
                 await save_to_db(data, db)
-            time.sleep(1)  # Intervalo entre as leituras
+            time.sleep(0.1)  # Intervalo entre as leituras
 
     except Exception as e:
         print(f"Erro no cliente OPC UA: {e}")

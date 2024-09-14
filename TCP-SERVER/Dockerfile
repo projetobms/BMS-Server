@@ -1,17 +1,17 @@
-# Usar uma imagem base com gcc
-FROM gcc:latest
+# Use uma imagem base do Python
+FROM python:3.11-slim
 
-# Diretório de trabalho dentro do container
-WORKDIR /usr/src/app
+# Defina o diretório de trabalho no container
+WORKDIR /app
 
-# Copiar o código do servidor para o container
-COPY tcp_server.c .
+# Copie o script para o diretório de trabalho
+COPY tcp_server.py .
 
-# Compilar o código
-RUN gcc -o tcp_server tcp_server.c
+# Instale as dependências necessárias
+RUN pip install opcua
 
-# Expor a porta 8080 para o host
+# Exponha a porta que o servidor irá usar
 EXPOSE 8081
 
-# Comando para executar o servidor TCP
-CMD ["./tcp_server"]
+# Execute o script quando o container for iniciado
+CMD ["python", "tcp_server.py"]
