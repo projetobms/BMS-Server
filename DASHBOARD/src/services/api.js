@@ -1,0 +1,1 @@
+const API_URL = 'http://172.19.0.1:8000'; // URL da sua API
