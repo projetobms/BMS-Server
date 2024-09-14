@@ -19,3 +19,10 @@ Pipfile.lock
 
 # Ignore package manager files
 *.egg-info/
+
+slprj/
+
+*_lsdrt_win64/
+
+*.rxw64
+*.slxc
