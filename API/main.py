@@ -4,6 +4,7 @@ from opcua import Client
 from datetime import datetime
 from typing import List, Optional
 from sqlalchemy.orm import Session
+from fastapi.middleware.cors import CORSMiddleware
 
 import models
 import schemas
@@ -11,6 +12,14 @@ import schemas
 from database import SessionLocal,engine, Base
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permitir todas as origens
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos os métodos HTTP (GET, POST, PUT, DELETE, etc)
+    allow_headers=["*"],  # Permitir todos os cabeçalhos
+)
 
 Base.metadata.create_all(bind=engine)
 
@@ -30,6 +39,7 @@ node_ids = {
     "batteryTemperature": "ns=1;s=battery.temperature",
     "batteryCurrent": "ns=1;s=battery.current",
     "batterySOC": "ns=1;s=battery.SOC",
+    "batteryCapacity": "ns=1;s=battery.capacity",
     "batteryDischargeCurrent": "ns=1;s=battery.dischargecurrent",
     "batteryChargerVoltage": "ns=1;s=battery.chargervoltage",
     "batteryChargerEnable": "ns=1;s=battery.chargerenable",
@@ -44,7 +54,11 @@ node_ids = {
     "espBatteryChargerVoltage": "ns=1;s=esp.battery.chargervoltage",
     "espBatteryChargerEnable": "ns=1;s=esp.battery.chargerenable",
     "espBatteryDischargerEnable": "ns=1;s=esp.battery.dischargerenable",
-    "simulationTime": "ns=1;s=simulation.time"  # Supondo que você tenha um nó com esse identificador
+    "simulationTime": "ns=1;s=simulation.time"  ,
+    "switchHPPC": "ns=1;s=switch.HPPC"  ,
+    "switchCapacity": "ns=1;s=switch.capacity"  ,
+    "switchDischarge": "ns=1;s=switch.discharge"  ,
+    "switchCharge": "ns=1;s=switch.charge"  
 }
 
 async def read_opcua_data():
@@ -116,6 +130,17 @@ def get_battery_soc(skip: int = 0, limit: int = 100, step: Optional[int] = None,
     if step:
         query = query.filter(models.BatterySoC.id % step == 0)
     return query.order_by(models.BatterySoC.timestamp.desc()).offset(skip).limit(limit).all()
+
+@app.get("/battery_capacity/", response_model=List[schemas.BatteryCapacitySchema])
+def get_battery_capacity(skip: int = 0, limit: int = 100, step: Optional[int] = None, start_date: Optional[datetime] = None, end_date: Optional[datetime] = None, db: Session = Depends(get_db)):
+    query = db.query(models.BatteryCapacity)
+    if start_date:
+        query = query.filter(models.BatteryCapacity.timestamp >= start_date)
+    if end_date:
+        query = query.filter(models.BatteryCapacity.timestamp <= end_date)
+    if step:
+        query = query.filter(models.BatteryCapacity.id % step == 0)
+    return query.order_by(models.BatteryCapacity.timestamp.desc()).offset(skip).limit(limit).all()
 
 @app.get("/charger_voltage/", response_model=List[schemas.ChargerVoltageSchema])
 def get_charger_voltage(skip: int = 0, limit: int = 100, step: Optional[int] = None, start_date: Optional[datetime] = None, end_date: Optional[datetime] = None, db: Session = Depends(get_db)):

@@ -1,0 +1,31 @@
+
+.flex-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px; /* Espaçamento entre os itens */
+  }
+  
+  .styled-label {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 14px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .styled-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    margin-right: 10px; /* Espaço à direita dos inputs */
+    font-size: 14px;
+    font-family: 'Roboto', Arial, sans-serif;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .styled-input:focus {
+    border-color: #007bff;
+  }
+  

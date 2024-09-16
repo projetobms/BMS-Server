@@ -7,7 +7,7 @@ from models import (BatteryVoltage, BatteryCurrent, BatteryTemperature, BatteryS
                     ChargerVoltage, ChargerEnable, DischargeCurrent, DischargerEnable,
                     BatteryVoltageESP, BatteryCurrentESP, BatteryTemperatureESP, BatterySoCESP,
                     ChargerVoltageESP, ChargerEnableESP, DischargeCurrentESP, DischargerEnableESP,
-                    ChamberSetpoint, ChamberTemperature)
+                    ChamberSetpoint, ChamberTemperature,BatteryCapacity)
 from database import SessionLocal
 
 def get_db():
@@ -26,6 +26,7 @@ node_ids = {
     "batteryTemperature": "ns=1;s=battery.temperature",
     "batteryCurrent": "ns=1;s=battery.current",
     "batterySOC": "ns=1;s=battery.SOC",
+    "batteryCapacity": "ns=1;s=battery.capacity",
     "batteryDischargeCurrent": "ns=1;s=battery.dischargecurrent",
     "batteryChargerVoltage": "ns=1;s=battery.chargervoltage",
     "batteryChargerEnable": "ns=1;s=battery.chargerenable",
@@ -73,6 +74,9 @@ async def save_to_db(data, db: Session):
     
     if "batterySOC" in data:
         db.add(BatterySoC(value=data["batterySOC"], simulation_time=simulation_time, timestamp=timestamp))
+    
+    if "batteryCapacity" in data:
+        db.add(BatteryCapacity(value=data["batteryCapacity"], simulation_time=simulation_time, timestamp=timestamp))
     
     if "batteryDischargeCurrent" in data:
         db.add(DischargeCurrent(value=data["batteryDischargeCurrent"], simulation_time=simulation_time, timestamp=timestamp))
@@ -130,7 +134,7 @@ async def read_and_save_data():
             data = await read_opcua_data(client)  # Reutilizar a conexão
             if data:
                 await save_to_db(data, db)
-            time.sleep(0.1)  # Intervalo entre as leituras
+            time.sleep(0.05)  # Intervalo entre as leituras
 
     except Exception as e:
         print(f"Erro no cliente OPC UA: {e}")

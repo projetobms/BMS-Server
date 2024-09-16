@@ -30,6 +30,13 @@ class BatterySoC(Base):
     simulation_time = Column(Float, nullable=False)
     timestamp = Column(DateTime, default=datetime.utcnow)
 
+class BatteryCapacity(Base):
+    __tablename__ = 'battery_capacity'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    value = Column(Float, nullable=False)
+    simulation_time = Column(Float, nullable=False)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+
 class ChargerVoltage(Base):
     __tablename__ = 'charger_voltage'
     id = Column(Integer, primary_key=True, autoincrement=True)

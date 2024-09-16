@@ -101,6 +101,25 @@ int main(int argc, char** argv)
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, batterySOCNodeId, parentNodeId, parentReferenceNodeId,
                               batterySOCBrowseName, variableType, batterySOCAttr, NULL, NULL);
+
+    /*------------------------------------------------------------------------------------------*/
+
+    UA_VariableAttributes batteryCapacityAttr = UA_VariableAttributes_default;
+    
+    batteryCapacityAttr.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
+
+    batteryCapacityAttr.displayName = UA_LOCALIZEDTEXT("en-US", "batteryCapacity");
+    UA_Double batteryCapacity = 0; // Valor de exemplo para a tensão da bateria
+    UA_Variant_setScalar(&batteryCapacityAttr.value, &batteryCapacity, &UA_TYPES[UA_TYPES_DOUBLE]);
+
+    /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
+    UA_NodeId batteryCapacityNodeId = UA_NODEID_STRING(1, "battery.capacity");
+    UA_QualifiedName batteryCapacityBrowseName = UA_QUALIFIEDNAME(1, "batteryCapacity");
+
+    /* 3) Adicionar o nó */
+    UA_Server_addVariableNode(server, batteryCapacityNodeId, parentNodeId, parentReferenceNodeId,
+                              batteryCapacityBrowseName, variableType, batteryCapacityAttr, NULL, NULL);
+    
     
     /*------------------------------------------------------------------------------------------*/
 
@@ -371,6 +390,79 @@ int main(int argc, char** argv)
     /* 3) Adicionar o nó */
     UA_Server_addVariableNode(server, simulationTimeNodeId, parentNodeId, parentReferenceNodeId,
                               simulationTimeBrowseName, variableType, simulationTimeAttr, NULL, NULL);
+
+    /*------------------------------------------------------------------------------------------*/
+
+    UA_VariableAttributes switchHPPCAttr = UA_VariableAttributes_default;
+    
+    switchHPPCAttr.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
+
+    switchHPPCAttr.displayName = UA_LOCALIZEDTEXT("en-US", "switchHPPC");
+    UA_Double switchHPPC = 0; // Valor de exemplo para a tensão da bateria
+    UA_Variant_setScalar(&switchHPPCAttr.value, &switchHPPC, &UA_TYPES[UA_TYPES_DOUBLE]);
+
+    /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
+    UA_NodeId switchHPPCNodeId = UA_NODEID_STRING(1, "switch.HPPC");
+    UA_QualifiedName switchHPPCBrowseName = UA_QUALIFIEDNAME(1, "switchHPPC");
+
+    /* 3) Adicionar o nó */
+    UA_Server_addVariableNode(server, switchHPPCNodeId, parentNodeId, parentReferenceNodeId,
+                              switchHPPCBrowseName, variableType, switchHPPCAttr, NULL, NULL);
+
+    /*------------------------------------------------------------------------------------------*/
+
+    UA_VariableAttributes switchCapacityAttr = UA_VariableAttributes_default;
+    
+    switchCapacityAttr.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
+
+    switchCapacityAttr.displayName = UA_LOCALIZEDTEXT("en-US", "switchCapacity");
+    UA_Double switchCapacity = 0; // Valor de exemplo para a tensão da bateria
+    UA_Variant_setScalar(&switchCapacityAttr.value, &switchCapacity, &UA_TYPES[UA_TYPES_DOUBLE]);
+
+    /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
+    UA_NodeId switchCapacityNodeId = UA_NODEID_STRING(1, "switch.capacity");
+    UA_QualifiedName switchCapacityBrowseName = UA_QUALIFIEDNAME(1, "switchCapacity");
+
+    /* 3) Adicionar o nó */
+    UA_Server_addVariableNode(server, switchCapacityNodeId, parentNodeId, parentReferenceNodeId,
+                              switchCapacityBrowseName, variableType, switchCapacityAttr, NULL, NULL);
+
+    /*------------------------------------------------------------------------------------------*/
+
+    UA_VariableAttributes switchDischargeAttr = UA_VariableAttributes_default;
+    
+    switchDischargeAttr.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
+
+    switchDischargeAttr.displayName = UA_LOCALIZEDTEXT("en-US", "switchDischarge");
+    UA_Double switchDischarge = 0; // Valor de exemplo para a tensão da bateria
+    UA_Variant_setScalar(&switchDischargeAttr.value, &switchDischarge, &UA_TYPES[UA_TYPES_DOUBLE]);
+
+    /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
+    UA_NodeId switchDischargeNodeId = UA_NODEID_STRING(1, "switch.discharge");
+    UA_QualifiedName switchDischargeBrowseName = UA_QUALIFIEDNAME(1, "switchDischarge");
+
+    /* 3) Adicionar o nó */
+    UA_Server_addVariableNode(server, switchDischargeNodeId, parentNodeId, parentReferenceNodeId,
+                              switchDischargeBrowseName, variableType, switchDischargeAttr, NULL, NULL);
+
+    /*------------------------------------------------------------------------------------------*/
+
+    UA_VariableAttributes switchChargeAttr = UA_VariableAttributes_default;
+    
+    switchChargeAttr.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
+
+    switchChargeAttr.displayName = UA_LOCALIZEDTEXT("en-US", "switchCharge");
+    UA_Double switchCharge = 0; // Valor de exemplo para a tensão da bateria
+    UA_Variant_setScalar(&switchChargeAttr.value, &switchCharge, &UA_TYPES[UA_TYPES_DOUBLE]);
+
+    /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
+    UA_NodeId switchChargeNodeId = UA_NODEID_STRING(1, "switch.charge");
+    UA_QualifiedName switchChargeBrowseName = UA_QUALIFIEDNAME(1, "switchCharge");
+
+    /* 3) Adicionar o nó */
+    UA_Server_addVariableNode(server, switchChargeNodeId, parentNodeId, parentReferenceNodeId,
+                              switchChargeBrowseName, variableType, switchChargeAttr, NULL, NULL);
+
 
     /* Executar o loop do servidor */
     UA_StatusCode status = UA_Server_run(server, &running);

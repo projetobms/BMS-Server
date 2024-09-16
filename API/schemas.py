@@ -17,6 +17,15 @@ class BatteryCurrentSchema(BaseModel):
     class Config:
         orm_mode = True
 
+class BatteryCapacitySchema(BaseModel):
+    value: float
+    simulation_time: float
+    timestamp: datetime
+
+    class Config:
+        orm_mode = True
+
+
 class BatteryTemperatureSchema(BaseModel):
     value: float
     simulation_time: float
