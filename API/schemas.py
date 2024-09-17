@@ -156,3 +156,7 @@ class ChamberTemperatureSchema(BaseModel):
 
 class SetpointRequest(BaseModel):
     value: float
+class OPCUAWriteRequest(BaseModel):
+    node_name: str
+    value: float
+
