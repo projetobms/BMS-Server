@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000'; // URL da sua API
+const API_URL = 'https://labnvh.online/api'; // URL da sua API
 
 export const fetchOpcUaData = async () => {
   try {

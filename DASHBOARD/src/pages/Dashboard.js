@@ -33,7 +33,7 @@ function Dashboard() {
           <PageTitle>Projeto BMS</PageTitle>
         </div>
         <div style={{marginRight:"110px",marginLeft:"auto"}}>
-          <LinkButton>Camera</LinkButton>
+          <LinkButton href={"/camera"}>Camera</LinkButton>
           <LinkButton href={"/graphs"}>Gráficos</LinkButton>
         </div>
       </FlexHorizontal>
