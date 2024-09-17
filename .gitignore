@@ -26,3 +26,6 @@ slprj/
 
 *.rxw64
 *.slxc
+
+saved_videos/
+videos.db
