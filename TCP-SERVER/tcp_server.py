@@ -8,16 +8,12 @@ NODE_ADDRESSES = {
     1: "ns=1;s=battery.temperature",
     2: "ns=1;s=battery.current",
     3: "ns=1;s=battery.SOC",
-    3: "ns=1;s=battery.capacity",
-    4: "ns=1;s=battery.dischargecurrent",
-    5: "ns=1;s=battery.chargervoltage",
-    6: "ns=1;s=battery.chargerenable",
-    7: "ns=1;s=battery.dischargerenable",
-    8: "ns=1;s=simulation.time",
-    9: "ns=1;s=switch.HPPC"  ,
-    10: "ns=1;s=switch.capacity"  ,
-    11: "ns=1;s=switch.discharge"  ,
-    12: "ns=1;s=switch.charge"  
+    4: "ns=1;s=battery.capacity",
+    5: "ns=1;s=battery.dischargecurrent",
+    6: "ns=1;s=battery.chargervoltage",
+    7: "ns=1;s=battery.chargerenable",
+    8: "ns=1;s=battery.dischargerenable",
+    9: "ns=1;s=simulation.time"
 }
 
 class OPCUAClient:

@@ -87,6 +87,32 @@ async def get_opcua_data():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+async def write_opcua_setpoint(node_id: str, value: float):
+    client = Client(server_url)
+    try:
+        client.connect()
+        node = client.get_node(node_id)
+        node.set_value(value)  # Escreve o novo valor no node
+        return {"message": "Valor alterado com sucesso", "new_value": value}
+    except Exception as e:
+        print(f"Erro ao conectar ou escrever valor: {e}")
+        return None
+    finally:
+        client.disconnect()
+
+# Rota POST para alterar o valor do chamberSetpoint
+@app.post("/set-chamber-setpoint")
+async def set_chamber_setpoint(request: schemas.SetpointRequest):
+    try:
+        node_id = node_ids["chamberSetpoint"]
+        result = await write_opcua_setpoint(node_id, request.value)
+        if result is None:
+            raise HTTPException(status_code=500, detail="Erro ao alterar o setpoint no servidor OPC-UA")
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+        
+
 @app.get("/battery_voltage/", response_model=List[schemas.BatteryVoltageSchema])
 def get_battery_voltage(skip: int = 0, limit: int = 100, step: Optional[int] = None, start_date: Optional[datetime] = None, end_date: Optional[datetime] = None, db: Session = Depends(get_db)):
     query = db.query(models.BatteryVoltage)

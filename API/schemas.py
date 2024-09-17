@@ -153,3 +153,6 @@ class ChamberTemperatureSchema(BaseModel):
 
     class Config:
         orm_mode = True
+
+class SetpointRequest(BaseModel):
+    value: float
