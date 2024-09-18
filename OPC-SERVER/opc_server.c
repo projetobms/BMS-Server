@@ -463,6 +463,25 @@ int main(int argc, char** argv)
     UA_Server_addVariableNode(server, switchChargeNodeId, parentNodeId, parentReferenceNodeId,
                               switchChargeBrowseName, variableType, switchChargeAttr, NULL, NULL);
 
+    /*------------------------------------------------------------------------------------------*/
+
+    UA_VariableAttributes batterySetpointAttr = UA_VariableAttributes_default;
+    
+    batterySetpointAttr.accessLevel = UA_ACCESSLEVELMASK_READ | UA_ACCESSLEVELMASK_WRITE;
+
+    batterySetpointAttr.displayName = UA_LOCALIZEDTEXT("en-US", "batterySetpoint");
+    UA_Double batterySetpoint = 0; // Valor de exemplo para a tensão da bateria
+    UA_Variant_setScalar(&batterySetpointAttr.value, &batterySetpoint, &UA_TYPES[UA_TYPES_DOUBLE]);
+
+    /* 2) Definir onde o nó será adicionado e qual o nome de navegação */
+    UA_NodeId batterySetpointNodeId = UA_NODEID_STRING(1, "battery.setpoint");
+    UA_QualifiedName batterySetpointBrowseName = UA_QUALIFIEDNAME(1, "batterySetpoint");
+
+    /* 3) Adicionar o nó */
+    UA_Server_addVariableNode(server, batterySetpointNodeId, parentNodeId, parentReferenceNodeId,
+                              batterySetpointBrowseName, variableType, batterySetpointAttr, NULL, NULL);
+
+
 
     /* Executar o loop do servidor */
     UA_StatusCode status = UA_Server_run(server, &running);

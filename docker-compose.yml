@@ -26,6 +26,10 @@ services:
     build: ./TCP-SERVER
     ports:
       - "8081:8081"
+      - "8082:8082"
+      - "8083:8083"
+      - "8084:8084"
+      - "8085:8085"
   
   opc_server:
     build: ./OPC-SERVER
@@ -53,5 +57,19 @@ services:
       - /app/node_modules
     command: npm start
 
+  mqtt:
+    build: ./MQTT
+
+  mosquitto:
+    image: eclipse-mosquitto:2.0  
+    ports:
+      - "1883:1883"
+    volumes:
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+
 volumes:
   postgres_data:
+  mosquitto_data:
+  mosquitto_log:
+

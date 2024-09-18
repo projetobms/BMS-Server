@@ -5,13 +5,13 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copie o script para o diretório de trabalho
-COPY tcp_server.py .
+COPY . .
 
 # Instale as dependências necessárias
 RUN pip install opcua
 
 # Exponha a porta que o servidor irá usar
-EXPOSE 8081
+EXPOSE 8081 8082 8083 8084 8085
 
 # Execute o script quando o container for iniciado
-CMD ["python", "tcp_server.py"]
+CMD ["python", "receive_tcp_server.py"]
