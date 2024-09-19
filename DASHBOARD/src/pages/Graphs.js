@@ -51,10 +51,6 @@ function Graphs() {
     battery_current_esp: { url: '/battery_current_esp/', label: 'Battery Current ESP', color: 'rgba(54, 235, 162, 1)' },
     battery_temperature_esp: { url: '/battery_temperature_esp/', label: 'Battery Temperature ESP', color: 'rgba(99, 255, 132, 1)' },
     battery_soc_esp: { url: '/battery_soc_esp/', label: 'Battery SOC ESP', color: 'rgba(162, 54, 235, 1)' },
-    charger_voltage_esp: { url: '/charger_voltage_esp/', label: 'Charger Voltage ESP', color: 'rgba(235, 54, 162, 1)' },
-    charger_enable_esp: { url: '/charger_enable_esp/', label: 'Charger Enable ESP', color: 'rgba(64, 159, 255, 1)' },
-    discharge_current_esp: { url: '/discharge_current_esp/', label: 'Discharge Current ESP', color: 'rgba(255, 99, 86, 1)' },
-    discharger_enable_esp: { url: '/discharger_enable_esp/', label: 'Discharger Enable ESP', color: 'rgba(192, 192, 75, 1)' },
     chamber_setpoint: { url: '/chamber_setpoint/', label: 'Chamber Setpoint', color: 'rgba(255, 86, 159, 1)' },
     chamber_temperature: { url: '/chamber_temperature/', label: 'Chamber Temperature', color: 'rgba(86, 255, 206, 1)' },
   };
